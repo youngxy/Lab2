@@ -4,15 +4,6 @@ import java.net.URLEncoder;
 import java.sql.*;
 import javax.swing.JOptionPane;
 public class Book extends ActionSupport{
-	private String name;
-	private String ID;
-	private String author;
-	private String number;
-	private String publish;
-	private String price;
-	private String publishdate;
-	private String age;
-	private String country;
 	
 	
 	public Book(){
