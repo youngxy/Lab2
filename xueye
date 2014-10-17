@@ -2,7 +2,6 @@ package xueye;
 import com.opensymphony.xwork2.ActionSupport;
 import java.net.URLEncoder;
 import java.sql.*;
-import java.util.*;
 import javax.swing.JOptionPane;
 public class Book extends ActionSupport{
 	private String name;
