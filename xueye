@@ -1,0 +1,132 @@
+package xueye;
+import com.opensymphony.xwork2.ActionSupport;
+import java.net.URLEncoder;
+import java.sql.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+public class Book extends ActionSupport{
+	private String name;
+	private String ID;
+	private String author;
+	private String number;
+	private String publish;
+	private String price;
+	private String publishdate;
+	private String age;
+	private String country;
+	
+	
+	public Book(){
+		ID = null;
+		name = null;
+		author = null;
+		number = null;
+		publish = null;
+		price = null;
+		age = null;
+		country =null;
+		publishdate = null;
+		
+		}
+	public Book(String ID,String nume,String author,String number,String publish, String publishdata,String price,
+			String age,String country){
+		this.ID = ID;
+		this.name = name;
+		this.author =author;
+		this.number = number;
+		this.publish = publish;
+		this.publishdate = publishdata;
+		this.price = price;
+		this.age = age;
+		this.country =country;
+		
+	}
+	public void setID(String ID){
+		this.ID = ID;
+	}
+	public void setAge(String age){
+		this.age = age;
+	}
+	public void setCountry(String country){
+		this.country =country;
+	}
+	public void setPrice(String price){
+		this.price =price;
+	}
+	public void setPublishdata(String publishdata){
+		this.publishdate = publishdata;
+	}
+	public void setName(String name){
+		this.name = name;
+	}
+	public void setAuthor(String author){
+		this.author =author;
+	}
+	public void setnumber(String number){
+		this.number = number;
+	}
+	public void setPublish(String publish){
+		this.publish = publish;
+	}
+	public String getID(){
+		return ID;
+		
+	}
+	public String getName(){
+		return name;
+	}
+	public String getAge(){
+		return age;
+	}
+	public String getCountry(){
+		return country;
+	}
+	public String getAuthor(){
+		return author;
+	}
+	public String getnumber(){
+		return number;
+	}
+	public String getPublish(){
+		return publish;
+	}
+	public String getPublishdata(){
+		return publishdate;
+	}
+	public String getPrice(){
+		return price;
+	}
+	public String execute() throws Exception{
+		String tempID=new String();
+			Connection con=null;
+			Statement stmt=null;
+			ResultSet rs=null;
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://localhost:3306/book?UseUnicode=true&characterencoding=gdk";
+			con = DriverManager.getConnection(url,"root","");
+			stmt=con.createStatement();
+			String sql1="select * from Book where Title='"+name+"'";		
+			rs=stmt.executeQuery(sql1);
+			while(rs.next()){
+			ID=rs.getString("ID");
+			author=rs.getString("Author");
+			publish=rs.getString("Publish");
+			publishdate=rs.getString("Publishdate");
+			price=rs.getString("Price");
+			}
+			rs.close();
+			tempID=author;
+			String sql2="select * from Author where AuthorID='"+tempID+"'";		
+			rs=stmt.executeQuery(sql2);
+			while(rs.next()){
+			name=rs.getString("Name");
+			age=rs.getString("Age");
+			country=rs.getString("Country");
+			}
+			rs.close();
+			stmt.close();
+			con.close();
+		return "success";
+		
+	}
+}
